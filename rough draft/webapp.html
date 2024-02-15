@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>QuikTix 🤖</title>
+    
+</head>
+<body>
+    <h1>Concert Ticket Bot</h1>
+    <form id="ticketSearchForm">
+        <label for="artistInput">Artist/Band:</label>
+        <input type="text" id="artistInput" required><br><br>
+        
+        <label for="venueInput">Venue/City:</label>
+        <input type="text" id="venueInput" required><br><br>
+        
+        <label for="dateInput">Date:</label>
+        <input type="date" id="dateInput" required><br><br>
+        
+        <button type="submit">Search Tickets</button>
+    </form>
+    
+    <div id="ticketResult"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Function to search for tickets
+        async function searchForTickets(event) {
+            event.preventDefault();
+            
+            const artist = document.getElementById('artistInput').value;
+            const venue = document.getElementById('venueInput').value;
+            const date = document.getElementById('dateInput').value;
+            
+            try {
+                // Make API request to ticketing service
+                const response = await axios.get(`https://api.ticketing-service.com/search?artist=${artist}&venue=${venue}&date=${date}`);
+                const tickets = response.data.tickets;
+
+                // Process tickets
+                if (tickets.length > 0) {
+                    // Sort tickets by price or availability or any other criteria
+                    const sortedTickets = tickets.sort((a, b) => a.price - b.price);
+                    const bestTicket = sortedTickets[0];
+
+                    // Display result
+                    document.getElementById('ticketResult').innerHTML = `<p>Best available ticket: ${bestTicket}</p>`;
+                } else {
+                    document.getElementById('ticketResult').innerHTML = '<p>No tickets available.</p>';
+                }
+            } catch (error) {
+                console.error('Error searching for tickets:', error);
+                document.getElementById('ticketResult').innerHTML = '<p>Error searching for tickets. Please try again later.</p>';
+            }
+        }
+
+        document.getElementById('ticketSearchForm').addEventListener('submit', searchForTickets);
+    </script>
+</body>
+</html>
+
+
+

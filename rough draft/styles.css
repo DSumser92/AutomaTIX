@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #800020, #FFD700); /* Wine and gold gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 36px;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for form */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    max-width: 400px;
+    width: 100%;
+   
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #800020; /* Wine color */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #690018; /* Darker shade of wine color on hover */
+}
+
+#ticketResult {
+    margin-top: 20px;
+    text-align: center;
+}
